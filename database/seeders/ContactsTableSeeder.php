@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Company;
+use App\Models\Contact;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CompaniesTableSeeder extends Seeder
+class ContactsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,11 +15,6 @@ class CompaniesTableSeeder extends Seeder
      */
     public function run()
     {
-        Company::factory()->count(10)->create();
+        Contact::factory()->count(50)->create();
     }
 }
-
-/**
-// drop all tables and then run seed operation
-php artisan migrate:fresh --seed
-*/
