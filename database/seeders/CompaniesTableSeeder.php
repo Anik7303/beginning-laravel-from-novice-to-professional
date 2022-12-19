@@ -16,9 +16,11 @@ class CompaniesTableSeeder extends Seeder
      */
     public function run()
     {
-        // delete all existing entries
+        // delete all existing records
+        // `delete` - deletes all records
+        DB::table('companies')->delete();
         // `truncate` - resets all records and autoincrementing id to 0
-        DB::table('companies')->truncate();
+        // DB::table('companies')->truncate();
 
         $companies = [];
         $faker = Faker::create();
@@ -32,7 +34,8 @@ class CompaniesTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
-        };
+        }
+        ;
 
         DB::table('companies')->insert($companies);
     }
