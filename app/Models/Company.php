@@ -18,7 +18,7 @@ class Company extends Model
     }
 }
 
-/*
+/**
 use App\Models\Company;
 // read entries from database
 Company::take(3)->get()
