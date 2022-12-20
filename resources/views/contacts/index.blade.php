@@ -49,12 +49,16 @@
                                                     <a href="{{ route('contacts.edit', $contact->id) }}"
                                                         class="btn btn-sm btn-circle btn-outline-secondary"
                                                         title="Edit"><i class="fa fa-edit"></i></a>
-                                                    <a href="#" class="btn btn-sm btn-circle btn-outline-danger"
-                                                        title="Delete" onclick="confirm('Are you sure?')"><i
-                                                            class="fa fa-times"></i></a>
+                                                    <a href="{{ route('contacts.destroy', $contact->id) }}"
+                                                        class="btn btn-sm btn-circle btn-outline-danger btn-delete"
+                                                        title="Delete"><i class="fa fa-times"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
+                                        <form id="form-delete" method="POST" style="display:none;">
+                                            @method('DELETE')
+                                            @csrf
+                                        </form>
                                     @endif
 
                                 </tbody>

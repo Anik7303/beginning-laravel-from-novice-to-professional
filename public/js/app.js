@@ -1,4 +1,15 @@
 const filterCompanyId = document.getElementById("filter_company_id");
+document.querySelectorAll(".btn-delete").forEach((button) => {
+    button.addEventListener("click", function (event) {
+        event.preventDefault();
+        if (confirm("Are you sure?")) {
+            const action = this.getAttribute("href");
+            const form = document.getElementById("form-delete");
+            form.setAttribute("action", action);
+            form.submit();
+        }
+    });
+});
 
 if (filterCompanyId) {
     filterCompanyId.addEventListener("change", (event) => {
