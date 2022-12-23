@@ -15,6 +15,22 @@ class Contact extends Model
     {
         return $this->belongsTo(Company::class);
     }
+
+    public function scopeLatestFirst($query)
+    {
+        return $query->orderBy('created_at', 'desc');
+    }
+
+    public function scopeFilter($query)
+    {
+        if ($company_id = request('company_id')) {
+            $query->where('company_id', $company_id);
+        }
+        if ($search = request('search')) {
+            $query->where('first_name', 'LIKE', "%$search%");
+        }
+        return $query;
+    }
 }
 
 /**
