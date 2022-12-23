@@ -21,7 +21,8 @@ if (filterCompanyId) {
     });
 }
 
-document.getElementById("btn-clear").addEventListener("click", () => {
+const searchClearBtn = document.getElementById("btn-clear");
+searchClearBtn.addEventListener("click", () => {
     const input = document.getElementById("search"),
         select = document.getElementById("filter_company_id");
 
@@ -33,13 +34,12 @@ document.getElementById("btn-clear").addEventListener("click", () => {
 
 function toggleClearBtn() {
     const query = window.location.search,
-        pattern = /[?&]search=./,
-        button = document.getElementById("btn-clear");
+        pattern = /[?&]search=./;
 
     if (pattern.test(query)) {
-        button.style.display = "block";
+        searchClearBtn.style.display = "block";
     } else {
-        button.style.display = "none";
+        searchClearBtn.style.display = "none";
     }
 }
 
