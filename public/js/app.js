@@ -20,3 +20,27 @@ if (filterCompanyId) {
         window.location.href = url;
     });
 }
+
+document.getElementById("btn-clear").addEventListener("click", () => {
+    const input = document.getElementById("search"),
+        select = document.getElementById("filter_company_id");
+
+    input.value = "";
+    select.selectedIndex = 0;
+
+    window.location.href = window.location.href.split("?")[0];
+});
+
+function toggleClearBtn() {
+    const query = window.location.search,
+        pattern = /[?&]search=./,
+        button = document.getElementById("btn-clear");
+
+    if (pattern.test(query)) {
+        button.style.display = "block";
+    } else {
+        button.style.display = "none";
+    }
+}
+
+toggleClearBtn();
