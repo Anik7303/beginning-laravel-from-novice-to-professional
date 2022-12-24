@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Scope;
 
 class FilterScope implements Scope
 {
-  protected $filterColumns = ['company_id'];
+  protected $filterColumns = [];
 
   public function apply(Builder $builder, Model $model)
   {
-    foreach ($this->filterColumns as $column) {
+    $columns = property_exists($model, 'filterColumns') ? $model->filterColumns : $this->filterColumns;
+    foreach ($columns as $column) {
       if ($value = request($column)) {
         $builder->where($column, $value);
       }
