@@ -17,23 +17,15 @@ class SearchScope implements Scope
       $columns = property_exists($model, 'searchColumns') ? $model->searchColumns : $this->searchColumns;
       foreach ($columns as $index => $column) {
         $arr = explode('.', $column);
+        $method = $index == 0 ? 'where' : 'orWhere';
         if (count($arr) > 1) {
           list($relationship, $col) = $arr;
-          if ($index == 0) {
-            $builder->whereHas($relationship, function ($query) use ($search, $col) {
-              $query->where($col, 'LIKE', "%$search%");
-            });
-          } else {
-            $builder->orWhereHas($relationship, function ($query) use ($search, $col) {
-              $query->where($col, 'LIKE', "%$search%");
-            });
-          }
+          $method = "${method}Has";
+          $builder->$method($relationship, function ($query) use ($search, $col) {
+            $query->where($col, 'LIKE', "%$search%");
+          });
         } else {
-          if ($index == 0) {
-            $builder->where($column, 'LIKE', "%$search%");
-          } else {
-            $builder->orWhere($column, 'LIKE', "%$search%");
-          }
+          $builder->$method($column, 'LIKE', "%$search%");
         }
 
       }
