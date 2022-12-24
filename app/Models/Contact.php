@@ -2,15 +2,13 @@
 
 namespace App\Models;
 
-use App\Scopes\FilterScope;
-use App\Scopes\SearchScope;
-// use App\Scopes\ContactSearchScope;
+use App\Scopes\FilterSearchScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
 {
-    use HasFactory;
+    use HasFactory, FilterSearchScope;
 
     protected $fillable = ['first_name', 'last_name', 'phone', 'email', 'address', 'company_id'];
 
@@ -25,13 +23,6 @@ class Contact extends Model
     public function scopeLatestFirst($query)
     {
         return $query->orderBy('created_at', 'desc');
-    }
-
-    public static function booted()
-    {
-        static::addGlobalScope(new FilterScope);
-        static::addGlobalScope(new SearchScope);
-        // static::addGlobalScope(new ContactSearchScope);
     }
 }
 
