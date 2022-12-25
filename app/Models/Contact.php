@@ -10,7 +10,7 @@ class Contact extends Model
 {
     use HasFactory, FilterSearchScope;
 
-    protected $fillable = ['first_name', 'last_name', 'phone', 'email', 'address', 'company_id'];
+    protected $fillable = ['first_name', 'last_name', 'phone', 'email', 'address', 'company_id', 'user_id'];
 
     public $filterColumns = ['company_id'];
     public $searchColumns = ['first_name', 'last_name', 'email', 'company.name'];
@@ -27,7 +27,8 @@ class Contact extends Model
 
     public function scopeLatestFirst($query)
     {
-        return $query->orderBy('created_at', 'desc');
+        // return $query->orderBy('created_at', 'desc');
+        return $query->orderBy('id', 'desc');
     }
 }
 
