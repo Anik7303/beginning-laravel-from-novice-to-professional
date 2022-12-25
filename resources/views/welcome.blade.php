@@ -419,7 +419,7 @@
                 </svg>
             </div>
 
-            <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+            {{-- <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                 <div class="grid grid-cols-1">
                     <div class="p-6">
                         <a href="{{ route('contacts.index') }}">All Contacts</a>
@@ -431,7 +431,7 @@
                         <a href="{{ route('contacts.show', 1) }}">Show First Contact</a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </body>

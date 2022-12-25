@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ContactController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,9 @@ Route::put('/contacts/{id}', [ContactController::class, 'update'])->name('contac
 Route::delete('/contacts/{id}', [ContactController::class, 'destroy'])->name('contacts.destroy');
 
 Route::get('/contacts/{id}/edit', [ContactController::class, 'edit'])->name('contacts.edit');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
