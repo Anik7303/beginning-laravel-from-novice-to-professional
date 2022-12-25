@@ -12,6 +12,18 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    public function __construct()
+    {
+        // make sure middleware('auth') is not attached to any of contact's routes
+        $this->middleware('auth');
+
+        // apply to only 'create', 'update' and 'destroy' method
+        // $this->middleware('auth')->only('create', 'update', 'destroy');
+
+        // apply to all methods except 'index' and 'show'
+        // $this->middleware('auth')->except('index', 'show');
+    }
+
     public function index()
     {
         $companies = Company::orderBy('name', 'asc')->pluck('name', 'id')->prepend('All Companies', '');
