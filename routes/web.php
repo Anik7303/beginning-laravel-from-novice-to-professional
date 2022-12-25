@@ -19,7 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 })->name('index');
 
+// protect routes
 // Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index')->middleware('auth');
+// Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index')->middleware(['auth', 'verified']);
 
 Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
 
@@ -35,7 +37,7 @@ Route::delete('/contacts/{id}', [ContactController::class, 'destroy'])->name('co
 
 Route::get('/contacts/{id}/edit', [ContactController::class, 'edit'])->name('contacts.edit');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

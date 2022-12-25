@@ -15,7 +15,8 @@ class ContactController extends Controller
     public function __construct()
     {
         // make sure middleware('auth') is not attached to any of contact's routes
-        $this->middleware('auth');
+        // $this->middleware('auth');
+        $this->middleware(['auth', 'verified']);
 
         // apply to only 'create', 'update' and 'destroy' method
         // $this->middleware('auth')->only('create', 'update', 'destroy');
