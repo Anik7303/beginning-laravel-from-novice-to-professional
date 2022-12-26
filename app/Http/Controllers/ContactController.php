@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactRequest;
 use App\Models\Company;
 use App\Models\Contact;
 use Illuminate\Http\Request;
@@ -34,15 +35,9 @@ class ContactController extends Controller
         return view('contacts.create', compact('companies', 'contact'));
     }
 
-    public function store(Request $request)
+    public function store(ContactRequest $request)
     {
-        $request->validate([
-            'first_name' => ['required', 'string'],
-            'last_name' => ['required', 'string'],
-            'email' => ['required', 'string', 'email', 'unique:users'],
-            'address' => ['required', 'string'],
-            'company_id' => ['required', 'exists:companies,id']
-        ]);
+        // $request->validate($this->validationRules());
         $request->user()->contacts()->create($request->all());
         return redirect()->route('contacts.index')->with('message', 'Contact added successfully');
     }
@@ -59,15 +54,8 @@ class ContactController extends Controller
         return view('contacts.edit', compact('companies', 'contact'));
     }
 
-    public function update(Contact $contact, Request $request)
+    public function update(Contact $contact, ContactRequest $request)
     {
-        $request->validate([
-            'first_name' => ['required', 'string'],
-            'last_name' => ['required', 'string'],
-            'email' => ['required', 'email'],
-            'address' => ['required', 'string'],
-            'company_id' => ['required', 'exists:companies,id'],
-        ]);
         $contact->update($request->all());
         return redirect()->route('contacts.index')->with('message', 'Contact updated successfully');
     }
@@ -77,6 +65,17 @@ class ContactController extends Controller
         $contact->delete();
         return redirect()->route('contacts.index')->with('message', 'Contact deleted successfully');
     }
+
+// protected function validationRules()
+// {
+//     return [
+//         'first_name' => ['required', 'string'],
+//         'last_name' => ['required', 'string'],
+//         'email' => ['required', 'string', 'email', 'unique:users'],
+//         'address' => ['required', 'string'],
+//         'company_id' => ['required', 'exists:companies,id']
+//     ];
+// }
 
 // protected function userCompanies()
 // {
