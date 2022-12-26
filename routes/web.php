@@ -41,6 +41,10 @@ Route::get('/', function () {
 
 Route::resource('/contacts', ContactController::class);
 
+// Route::resource('/contacts', ContactController::class)->only(['store', 'show', 'update', 'destroy']);
+
+// Route::resource('/contacts', ContactController::class)->except(['create', 'edit']);
+
 // Route::resources([
 //     '/contacts' => ContactController::class,
 //     '/companies' => CompanyController::class
