@@ -30,6 +30,11 @@ class Contact extends Model
         // return $query->orderBy('created_at', 'desc');
         return $query->orderBy('id', 'desc');
     }
+
+// public function getRouteKeyName()
+// {
+//     return 'email';
+// }
 }
 
 /**
