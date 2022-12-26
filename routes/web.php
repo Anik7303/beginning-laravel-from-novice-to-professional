@@ -43,6 +43,20 @@ Route::get('/', function () {
 
 Route::resource('/contacts', ContactController::class);
 
+// Route::resource('/contacts', ContactController::class)->names([
+//     'index' => 'contacts.all',
+//     'show' => 'contacts.view',
+//     'destroy' => 'contacts.remove',
+// ]); // rename routes
+
+// Route::resource('/contacts', ContactController::class)->parameters(['contacts' => 'kontak']); // rename parameter names
+
+// Route::resource('/contacts', ContactController::class)->names([
+//     'index' => 'contacts.all',
+//     'show' => 'contacts.view',
+//     'destroy' => 'contacts.remove',
+// ])->parameters(['contacts' => 'kontak']); // rename route & parameter names
+
 // Route::resource('/contacts', ContactController::class)->only(['store', 'show', 'update', 'destroy']);
 
 // Route::resource('/contacts', ContactController::class)->except(['create', 'edit']);
