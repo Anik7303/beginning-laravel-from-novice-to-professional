@@ -39,6 +39,8 @@ Route::get('/', function () {
 
 // Route::get('/contacts/{contact}/edit', [ContactController::class, 'edit'])->name('contacts.edit');
 
+// Route::resource('/companies.contacts', ContactController::class); // nested resource route
+
 Route::resource('/contacts', ContactController::class);
 
 // Route::resource('/contacts', ContactController::class)->only(['store', 'show', 'update', 'destroy']);
