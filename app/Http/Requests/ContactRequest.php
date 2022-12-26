@@ -26,9 +26,25 @@ class ContactRequest extends FormRequest
         return [
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
-            'email' => ['required', 'string', 'email', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'unique:users,email'],
             'address' => ['required', 'string'],
             'company_id' => ['required', 'exists:companies,id']
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'company_id' => 'company'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'email.unique' => 'This email is already in use',
+            'email.email' => 'The entered email is invalid',
+            '*.required' => 'The :attribute field cannot be empty'
         ];
     }
 }

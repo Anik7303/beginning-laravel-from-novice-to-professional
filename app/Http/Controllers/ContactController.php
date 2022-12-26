@@ -37,7 +37,6 @@ class ContactController extends Controller
 
     public function store(ContactRequest $request)
     {
-        // $request->validate($this->validationRules());
         $request->user()->contacts()->create($request->all());
         return redirect()->route('contacts.index')->with('message', 'Contact added successfully');
     }
