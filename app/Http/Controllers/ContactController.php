@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-// use App\Models\Company;
+use App\Models\Company;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 
@@ -20,7 +20,8 @@ class ContactController extends Controller
     public function index(Request $request)
     {
         // DB::enableQueryLog();
-        $companies = $request->user()->companies()->orderBy('name', 'asc')->pluck('name', 'id')->prepend('All Companies', '');
+        // $companies = $this->userCompanies();
+        $companies = Company::userCompanies();
         $contacts = $request->user()->contacts()->latestFirst()->paginate(10);
         // dd(DB::getQueryLog());
         return view('contacts.index', compact('contacts', 'companies'));
@@ -29,7 +30,7 @@ class ContactController extends Controller
     public function create(Request $request)
     {
         $contact = new Contact();
-        $companies = $request->user()->companies()->orderBy('name')->pluck('name', 'id')->prepend('All Companies', '');
+        $companies = Company::userCompanies();
         return view('contacts.create', compact('companies', 'contact'));
     }
 
@@ -54,7 +55,7 @@ class ContactController extends Controller
 
     public function edit(Contact $contact, Request $request)
     {
-        $companies = $request->user()->companies()->orderBy('name')->pluck('name', 'id')->prepend('All Companies', '');
+        $companies = Company::userCompanies();
         return view('contacts.edit', compact('companies', 'contact'));
     }
 
@@ -76,6 +77,12 @@ class ContactController extends Controller
         $contact->delete();
         return redirect()->route('contacts.index')->with('message', 'Contact deleted successfully');
     }
+
+// protected function userCompanies()
+// {
+//     return request()->user()->companies()->orderBy('name', 'asc')->pluck('name', 'id')->prepend('All Companies', '');
+//     // return auth()->user()->companies()->orderBy('name', 'asc')->pluck('name', 'id')->prepend('All Companies', '');
+// }
 
 // public function __construct()
 // {

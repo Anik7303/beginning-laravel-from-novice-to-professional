@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Company extends Model
 {
@@ -20,6 +21,11 @@ class Company extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public static function userCompanies()
+    {
+        return self::where('user_id', Auth::id())->orderBy('name', 'asc')->pluck('name', 'id')->prepend('All Companies', '');
     }
 }
 
