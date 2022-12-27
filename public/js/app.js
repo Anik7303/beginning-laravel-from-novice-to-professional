@@ -22,20 +22,23 @@ if (filterCompanyId) {
 }
 
 const searchClearBtn = document.getElementById("btn-clear");
-searchClearBtn.addEventListener("click", () => {
-    const input = document.getElementById("search"),
-        select = document.getElementById("filter_company_id");
+if (searchClearBtn) {
+    searchClearBtn.addEventListener("click", () => {
+        const input = document.getElementById("search"),
+            select = document.getElementById("filter_company_id");
 
-    input.value = "";
-    select.selectedIndex = 0;
+        if (input) input.value = "";
+        if (select) select.selectedIndex = 0;
 
-    window.location.href = window.location.href.split("?")[0];
-});
+        window.location.href = window.location.href.split("?")[0];
+    });
+}
 
 function toggleClearBtn() {
     const query = window.location.search,
         pattern = /[?&]search=./;
 
+    if (!searchClearBtn) return;
     if (pattern.test(query)) {
         searchClearBtn.style.display = "block";
     } else {
