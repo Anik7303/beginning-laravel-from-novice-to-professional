@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 
 /*
@@ -18,6 +19,17 @@ use App\Http\Controllers\ContactController;
 Route::get('/', function () {
     return view('welcome');
 })->name('index');
+
+Auth::routes(['verify' => true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard')->middleware('auth');
+
+Route::resources([
+    '/contacts' => ContactController::class,
+    '/companies' => CompanyController::class
+]);
 
 // protect routes
 // Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index')->middleware('auth');
@@ -41,7 +53,7 @@ Route::get('/', function () {
 
 // Route::resource('/companies.contacts', ContactController::class); // nested resource route
 
-Route::resource('/contacts', ContactController::class);
+// Route::resource('/contacts', ContactController::class);
 
 // Route::resource('/contacts', ContactController::class)->names([
 //     'index' => 'contacts.all',
@@ -65,9 +77,3 @@ Route::resource('/contacts', ContactController::class);
 //     '/contacts' => ContactController::class,
 //     '/companies' => CompanyController::class
 // ]);
-
-Auth::routes(['verify' => true]);
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard')->middleware('auth');

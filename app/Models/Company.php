@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Scopes\SearchScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,9 @@ class Company extends Model
     use HasFactory;
     // protected $table = "companies" // customize table name
     // protected $guarded = []; // guarded properties
-    protected $fillable = ['name', 'address', 'website', 'email']; // fillable properties
+    protected $fillable = ['name', 'address', 'website', 'email', 'user_id']; // fillable properties
+
+    public $searchColumns = ['name', 'email', 'website'];
 
     public function contacts()
     {
@@ -26,6 +29,11 @@ class Company extends Model
     public static function userCompanies()
     {
         return self::where('user_id', Auth::id())->orderBy('name', 'asc')->pluck('name', 'id')->prepend('All Companies', '');
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new SearchScope);
     }
 }
 
