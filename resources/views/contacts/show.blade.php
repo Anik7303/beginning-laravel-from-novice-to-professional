@@ -65,10 +65,7 @@
                                                 class="btn btn-outline-secondary">Cancel</a>
                                         </div>
                                     </div>
-                                    <form id="form-delete" method="POST" style="display:none;">
-                                        @method('DELETE')
-                                        @csrf
-                                    </form>
+                                    @include('layouts._delete_form')
                                 </div>
                             </div>
                         </div>

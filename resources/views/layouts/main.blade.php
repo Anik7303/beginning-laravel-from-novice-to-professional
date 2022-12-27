@@ -32,21 +32,27 @@
             <div class="collapse navbar-collapse" id="navbar-toggler">
                 @auth
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a href="{{ route('dashboard') }}" class="nav-link">{{ __('Dashboard') }}</a>
+                        {{-- <li class="nav-item">{{ request()->path() }}</li> --}}
+                        {{-- <li class="nav-item">{{ request()->segment(1) }}</li> --}}
+                        {{-- <li class="nav-item">{{ request()->is('companies*') }}</li> --}}
+                        <li class="nav-item {{ request()->is('dashboard*') > 0 ? 'active' : '' }}">
+                            <a href="{{ route('dashboard') }}" class="nav-link">{{ __('Dashboard') }}</a>
                         </li>
-                        <li class="nav-item"><a href="#" class="nav-link">{{ __('Companies') }}</a></li>
-                        <li class="nav-item active"><a href="{{ route('contacts.index') }}"
-                                class="nav-link">{{ __('Contacts') }}</a>
+                        <li class="nav-item {{ request()->segment(1) == 'companies' ? 'active' : '' }}">
+                            <a href="{{ route('companies.index') }}" class="nav-link">{{ __('Companies') }}</a>
+                        </li>
+                        <li class="nav-item {{ request()->segment(1) == 'contacts' ? 'active' : '' }}">
+                            <a href="{{ route('contacts.index') }}" class="nav-link">{{ __('Contacts') }}</a>
                         </li>
                     </ul>
                 @endauth
                 <ul class="navbar-nav ml-auto">
                     @guest
-                        <li class="nav-item mr-2"><a href="{{ route('login') }}"
-                                class="btn btn-outline-secondary">{{ __('Login') }}</a>
+                        <li class="nav-item mr-2">
+                            <a href="{{ route('login') }}" class="btn btn-outline-secondary">{{ __('Login') }}</a>
                         </li>
-                        <li class="nav-item"><a href="{{ route('register') }}"
-                                class="btn btn-outline-primary">{{ __('Register') }}</a>
+                        <li class="nav-item">
+                            <a href="{{ route('register') }}" class="btn btn-outline-primary">{{ __('Register') }}</a>
                         </li>
                     @else
                         <li class="nav-item dropdown">
