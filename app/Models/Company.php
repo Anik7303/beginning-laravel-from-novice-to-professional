@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Company extends Model
 {
     use HasFactory;
+
+    public function contacts()
+    {
+        return $this->hasMany(Contact::class, 'company_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
