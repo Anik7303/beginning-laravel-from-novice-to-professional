@@ -53,7 +53,6 @@ if (resetButton) {
 function toggleResetButton() {
     if (!resetButton) return;
     const pattern = /[?&]search=/;
-    console.log(pattern.test(window.location.href));
     if (pattern.test(window.location.href)) {
         resetButton.style.display = "block";
     } else {
