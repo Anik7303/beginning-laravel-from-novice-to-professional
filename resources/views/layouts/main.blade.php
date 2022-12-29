@@ -56,11 +56,15 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ __('John Doe') }}
+                                {{ request()->user()->name }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="profile.html">{{ __('Settings') }}</a>
-                                <a class="dropdown-item" href="#">{{ __('Logout') }}</a>
+                                <a class="dropdown-item" href="#"
+                                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                <form method="POST" action="{{ route('logout') }}" id="logout-form" class="d-none">
+                                    @csrf
+                                </form>
                             </div>
                         </li>
                     @endguest
