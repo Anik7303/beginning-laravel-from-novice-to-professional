@@ -21,7 +21,7 @@ class CompanyController extends Controller
      */
     public function index(Request $request)
     {
-        $companies = $request->user()->companies()->latest()->paginate(10);
+        $companies = $request->user()->companies()->withCount('contacts')->latest()->paginate(10);
         return view('companies.index', compact('companies'));
     }
 

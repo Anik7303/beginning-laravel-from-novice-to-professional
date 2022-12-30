@@ -23,7 +23,7 @@ class ContactController extends Controller
         // DB::enableQueryLog();
         // $companies = $this->userCompanies();
         $companies = Company::userCompanies();
-        $contacts = $request->user()->contacts()->latestFirst()->paginate(10);
+        $contacts = $request->user()->contacts()->with('company')->latestFirst()->paginate(10);
         // dd(DB::getQueryLog());
         return view('contacts.index', compact('contacts', 'companies'));
     }
@@ -104,6 +104,10 @@ class ContactController extends Controller
 //     // $contacts = Contact::orderBy('first_name', 'asc')->where(function ($query) {
 //     // DB::enableQueryLog();
 //     $contacts = $request->user()->contacts()->latestFirst()->paginate(10);
+//     // $contacts = $request->user()->contacts()->with('company')->latestFirst()->paginate(10);
+//     // $contacts = $request->user()->contacts()->withCount('company')->latestFirst()->paginate(10);
+//     // $contacts = $request->user()->contacts()->with(['company', 'user'])->latestFirst()->paginate(10);
+//     // $contacts = $request->user()->contacts()->withCount(['company', 'user'])->latestFirst()->paginate(10);
 
 //     // remove global scopes
 //     // $contacts = Contact::withoutGlobalScopes()->paginate(10); // remove all global scopes
