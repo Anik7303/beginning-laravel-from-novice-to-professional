@@ -21,6 +21,7 @@
                     </div>
                 </div>
                 <div class="col-md-9">
+                    @include('layouts._message')
                     <form action="{{ route('settings.profile.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')

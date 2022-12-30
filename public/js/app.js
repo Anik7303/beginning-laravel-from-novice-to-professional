@@ -34,6 +34,13 @@ if (searchClearBtn) {
     });
 }
 
+const flashMessage = document.getElementById("flash-message");
+if (flashMessage) {
+    setTimeout(() => {
+        flashMessage.remove();
+    }, 3000);
+}
+
 function toggleClearBtn() {
     const query = window.location.search,
         pattern = /[?&]search=./;
