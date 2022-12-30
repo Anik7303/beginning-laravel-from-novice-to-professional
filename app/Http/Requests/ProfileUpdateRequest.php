@@ -31,4 +31,21 @@ class ProfileUpdateRequest extends FormRequest
             'profile_picture' => ['nullable', 'file'],
         ];
     }
+
+    /**
+     * Handle data restructing for update
+     * @return mixed
+     */
+    public function handleRequest()
+    {
+        $profile_data = $this->validated();
+        if ($this->hasFile('profile_picture')) {
+            $file = $this->file('profile_picture');
+            $extension = $file->getClientOriginalExtension();
+            $filename = "profile_picture_{$this->user()->id}.{$extension}";
+            $file->move(public_path('uploads'), $filename);
+            $profile_data['profile_picture'] = $filename;
+        }
+        return $profile_data;
+    }
 }

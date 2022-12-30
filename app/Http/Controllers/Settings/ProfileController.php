@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Settings;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileUpdateRequest;
 
@@ -28,14 +27,7 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request)
     {
-        $profile_data = $request->validated();
-        if ($request->hasFile('profile_picture')) {
-            $file = $request->file('profile_picture');
-            $extension = $file->getClientOriginalExtension();
-            $filename = "profile_picture_{$request->user()->id}.{$extension}";
-            $file->move(public_path('uploads'), $filename);
-            $profile_data['profile_picture'] = $filename;
-        }
+        $profile_data = $request->handleRequest();
         $request->user()->update($profile_data);
         return back()->with('message', 'Profile has been updated.');
     }
