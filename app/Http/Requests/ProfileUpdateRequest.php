@@ -43,7 +43,8 @@ class ProfileUpdateRequest extends FormRequest
             $file = $this->file('profile_picture');
             $extension = $file->getClientOriginalExtension();
             $filename = "profile_picture_{$this->user()->id}.{$extension}";
-            $file->move(public_path('uploads'), $filename);
+            // $filename = \Illuminate\Support\Facades\Storage::putFileAs('uploads', $file, $filename);
+            $filename = $file->storeAs('uploads', $filename);
             $profile_data['profile_picture'] = $filename;
         }
         return $profile_data;

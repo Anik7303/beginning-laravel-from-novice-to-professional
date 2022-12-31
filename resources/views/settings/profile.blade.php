@@ -81,7 +81,7 @@
                                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                                 <div class="fileinput-new img-thumbnail"
                                                     style="width: 150px; height: 150px;">
-                                                    <img src="{{ $user['profile_picture'] ? asset('uploads/' . $user['profile_picture']) : asset('uploads/default.png') }}"
+                                                    <img src="{{ $user->profileImageUrl() }}"
                                                         alt="Profile picture of {{ $user->fullName() }}">
                                                 </div>
                                                 <div class="fileinput-preview fileinput-exists img-thumbnail"
