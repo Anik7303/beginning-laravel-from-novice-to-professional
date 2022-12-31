@@ -59,7 +59,7 @@
                                 </tbody>
                             </table>
 
-                            {{ $contacts->appends(request()->only('company_id', 'search'))->links() }}
+                            {{ $contacts->withQueryString()->links() }}
                         </div>
                     </div>
                 </div>

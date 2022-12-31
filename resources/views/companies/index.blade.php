@@ -59,7 +59,7 @@
 
                                 </tbody>
                             </table>
-                            {{ $companies->appends(request()->only('search'))->links() }}
+                            {{ $companies->withQueryString()->links() }}
                         </div>
                     </div>
                 </div>
