@@ -11,8 +11,13 @@
 </head>
 
 <body>
-    {{-- <x-icon /> --}}
     {{-- <x-ui.button /> --}}
+    {{-- <x-icon src="logo.svg" /> --}}
+    @php
+        // $title = json_encode(['red', 'yellow']);
+        $icon = 'logo.svg';
+    @endphp
+    <x-icon :src="$icon" />
 
 </body>
 

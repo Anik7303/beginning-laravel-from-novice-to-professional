@@ -1,3 +1,3 @@
 <div>
-    Icon
+    <img src="{{ $src }}">
 </div>
