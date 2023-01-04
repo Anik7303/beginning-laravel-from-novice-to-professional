@@ -41,4 +41,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
+
+    public function getImagesCount()
+    {
+        $images_count = $this->images()->published()->count();
+        return "{$images_count} " . str('image')->plural($images_count);
+    }
 }
