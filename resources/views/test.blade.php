@@ -41,7 +41,11 @@
             </x-slot>
             <p class="mb-0">Data has been set. <a href="#" class="alert-link">details</a></p>
         </x-alert> --}}
-        <x-alert type="success" dismissible>
+        {{-- <x-alert type="success" dismissible> --}}
+        {{-- <x-alert type="warning" class="mt-4"> --}}
+        <x-alert type="warning" dismissible class="mt-4">
+            {{-- {{ $component->icon(asset('icons/heart.svg')) }} --}}
+            {{ $component->icon() }}
             <p class="mb-0">Data has been removed. {{ $component->link('Undo') }}</p>
         </x-alert>
     </div>
