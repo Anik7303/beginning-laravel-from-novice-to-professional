@@ -1,6 +1,6 @@
 <div
     {{ $attributes->class(['alert-dismissible fade show' => $dismissible])->merge([
-        'class' => "alert alert-{$validType}",
+        'class' => "alert alert-{$validType()}",
         'role' => $attributes->prepends('alert'),
     ]) }}>
     @isset($title)

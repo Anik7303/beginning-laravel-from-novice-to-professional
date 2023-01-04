@@ -35,8 +35,14 @@
                 </x-slot>
                 <p class="mb-0">Data has been set. <a href="#" class="alert-link">details</a></p>
         </x-alert> --}}
-        <x-alert type="success" dismissible>
+        {{-- <x-alert type="success" dismissible>
+            <x-slot name="title">
+                Success
+            </x-slot>
             <p class="mb-0">Data has been set. <a href="#" class="alert-link">details</a></p>
+        </x-alert> --}}
+        <x-alert type="success" dismissible>
+            <p class="mb-0">Data has been removed. {{ $component->link('Undo') }}</p>
         </x-alert>
     </div>
 </body>
