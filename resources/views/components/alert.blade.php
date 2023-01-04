@@ -3,7 +3,10 @@
         'class' => "alert alert-{$validType}",
         'role' => $attributes->prepends('alert'),
     ]) }}>
-    Alert
+    @isset($title)
+        <h4 class="alert-heading">{{ $title }}</h4>
+    @endisset
+    {{ $slot }}
     @if ($dismissible)
         <button type="button" class="btn-close" data-bs-dismiss="alert"aria-label="close"></button>
     @endif

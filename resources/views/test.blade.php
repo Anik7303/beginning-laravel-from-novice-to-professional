@@ -11,18 +11,34 @@
 </head>
 
 <body>
-    {{-- <x-ui.button /> --}}
-    {{-- <x-icon src="logo.svg" /> --}}
-    {{-- @php
-        // $title = json_encode(['red', 'yellow']);
-        $icon = 'logo.svg';
-    @endphp --}}
-    {{-- <x-icon :src="$icon" /> --}}
-    {{-- <x-alert type="warning" /> --}}
+    <div class="container">
 
-    <x-alert type="danger" id="my-alert" class="mt-4" role='flash' />
-    <x-alert type="success" dismissible class="my-4" />
+        {{-- <x-ui.button /> --}}
+        {{-- <x-icon src="logo.svg" /> --}}
+        {{-- @php
+            // $title = json_encode(['red', 'yellow']);
+            $icon = 'logo.svg';
+            @endphp --}}
+        {{-- <x-icon :src="$icon" /> --}}
+        {{-- <x-alert type="warning" /> --}}
 
+        {{-- <x-alert type="danger" id="my-alert" class="mt-4" role='flash' /> --}}
+        {{-- <x-alert type="success" dismissible class="my-4" /> --}}
+        {{-- <x-alert type="success" dismissible>
+            <h4 class="alert-heading">Success</h4>
+            <p class="mb-0">Data has been set. <a href="#" class="alert-link">details</a></p>
+        </x-alert> --}}
+        {{-- <x-alert type="success" dismissible>
+            <!-- <x-slot name="title"> -->
+            <x-slot:title>
+                Success
+                </x-slot>
+                <p class="mb-0">Data has been set. <a href="#" class="alert-link">details</a></p>
+        </x-alert> --}}
+        <x-alert type="success" dismissible>
+            <p class="mb-0">Data has been set. <a href="#" class="alert-link">details</a></p>
+        </x-alert>
+    </div>
 </body>
 
 </html>
