@@ -13,11 +13,15 @@
 <body>
     {{-- <x-ui.button /> --}}
     {{-- <x-icon src="logo.svg" /> --}}
-    @php
+    {{-- @php
         // $title = json_encode(['red', 'yellow']);
         $icon = 'logo.svg';
-    @endphp
-    <x-icon :src="$icon" />
+    @endphp --}}
+    {{-- <x-icon :src="$icon" /> --}}
+    {{-- <x-alert type="warning" /> --}}
+
+    <x-alert type="danger" id="my-alert" class="mt-4" role='flash' />
+    <x-alert type="success" dismissible class="my-4" />
 
 </body>
 
