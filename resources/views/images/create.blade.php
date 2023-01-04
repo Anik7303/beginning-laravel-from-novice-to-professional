@@ -4,8 +4,7 @@
 
 @section('content')
     <h1>Upload new image</h1>
-    <form action="{{ route('images.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
+    <x-form action="{{ route('images.store') }}" method="POST" enctype="multipart/form-data">
         <div>
             <label for="title">Title</label>
             <input type="text" name="title" id="title" value="{{ old('title') }}">
@@ -21,6 +20,6 @@
             @enderror
         </div>
         <button type="submit">Upload</button>
-    </form>
+    </x-form>
 
 @endsection

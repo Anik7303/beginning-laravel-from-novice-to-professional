@@ -19,10 +19,8 @@
                 <a href="{{ $image->route('edit') }}">Edit</a>
                 <a href="#"
                     onclick="event.preventDefault();if(confirm('Are you sure?')) document.getElementById('delete-form').submit();">Delete</a>
-                <form id="delete-form" action="{{ $image->route('destroy') }}" method="POST" style="display:none">
-                    @csrf
-                    @method('DELETE')
-                </form>
+                <x-form id="delete-form" action="{{ $image->route('destroy') }}" method="DELETE" style="display:none;">
+                </x-form>
             </div>
         </div>
     @endforeach
