@@ -1,8 +1,4 @@
-@extends('layouts.main')
-
-@section('title', 'Larapics | Edit Image')
-
-@section('content')
+<x-layout title="Edit image">
     <h1>Edit image</h1>
     <x-form action="{{ $image->route('update') }}" method="PUT">
         <div>
@@ -17,4 +13,4 @@
         </div>
         <button type="submit">Update</button>
     </x-form>
-@endsection
+</x-layout>

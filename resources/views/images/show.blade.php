@@ -1,10 +1,6 @@
-@extends('layouts.main')
-
-@section('title', 'Larapics')
-
-@section('content')
+<x-layout title="Show image">
     <h1>{{ $image['title'] }}</h1>
     <div>
         <img src="{{ $image->fileUrl() }}" alt="{{ $image['title'] }}">
     </div>
-@endsection
+</x-layout>

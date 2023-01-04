@@ -1,8 +1,4 @@
-@extends('layouts.main')
-
-@section('title', 'Larapics | Upload Image')
-
-@section('content')
+<x-layout title="Upload new image">
     <h1>Upload new image</h1>
     <x-form action="{{ route('images.store') }}" method="POST" enctype="multipart/form-data">
         <div>
@@ -21,5 +17,4 @@
         </div>
         <button type="submit">Upload</button>
     </x-form>
-
-@endsection
+</x-layout>
